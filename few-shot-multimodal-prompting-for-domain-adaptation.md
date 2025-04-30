@@ -1,4 +1,4 @@
-# Few-Shot Multimodal Prompting for Domain Adaptation Experiment
+# Few-Shot Multimodal Prompting for Domain Adaptation Experiment
 
 ## Abstract
 
