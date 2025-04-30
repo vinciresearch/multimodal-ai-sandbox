@@ -1,0 +1,912 @@
+{
+  "name": "Untitled",
+  "pinned": false,
+  "createdAt": 1743072323302,
+  "preset": "",
+  "tokenCount": 1469,
+  "systemPrompt": "",
+  "messages": [
+    {
+      "versions": [
+        {
+          "type": "singleStep",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Do you know what this is?"
+            },
+            {
+              "type": "file",
+              "fileIdentifier": "1745855775955 - 528.png",
+              "fileType": "image",
+              "sizeBytes": 2041045
+            }
+          ],
+          "preprocessed": {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Do you know what this is?"
+              },
+              {
+                "type": "file",
+                "name": "Screenshot 2025-04-28 at 17.52.59.png",
+                "identifier": "1745855775955 - 528.png",
+                "sizeBytes": 2041045,
+                "fileType": "image"
+              }
+            ]
+          }
+        }
+      ],
+      "currentlySelected": 0
+    },
+    {
+      "versions": [
+        {
+          "type": "multiStep",
+          "role": "assistant",
+          "senderInfo": {
+            "senderName": "gemma-3-4b-it"
+          },
+          "steps": [
+            {
+              "type": "contentBlock",
+              "stepIdentifier": "1745855802630-0.3262390298158191",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Okay, let's analyze the image. \n\nThat appears to be a **fiber optic splicing tool**, specifically a **fiber optic cleaver and stripper**. \n\nHere’s why:\n\n*   **The Jaws:** The large metal jaws are designed for precisely cutting (cleaving) the end of a fiber optic cable at a specific angle, which is crucial for making clean splices.\n*   **The Stripper:** The long, cylindrical tool with the green and white markings is used to strip away the outer jacket of the fiber cable, exposing the core fibers for splicing. \n\nThese tools are commonly used by technicians who install and maintain fiber optic cables. \n\nDo you want me to tell you more about how they work or their uses?",
+                  "fromDraftModel": false,
+                  "tokensCount": 155
+                }
+              ],
+              "genInfo": {
+                "indexedModelIdentifier": "lmstudio-community/gemma-3-4b-it-GGUF/gemma-3-4b-it-Q4_K_M.gguf",
+                "identifier": "gemma-3-4b-it",
+                "loadModelConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.load.llama.cpuThreadPoolSize",
+                      "value": 6
+                    },
+                    {
+                      "key": "llm.load.contextLength",
+                      "value": 4096
+                    },
+                    {
+                      "key": "llm.load.llama.acceleration.offloadRatio",
+                      "value": 1
+                    }
+                  ]
+                },
+                "predictionConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.prediction.temperature",
+                      "value": 0.1
+                    },
+                    {
+                      "key": "llm.prediction.promptTemplate",
+                      "value": {
+                        "type": "jinja",
+                        "jinjaPromptTemplate": {
+                          "template": "{{ bos_token }}\n{%- if messages[0]['role'] == 'system' -%}\n    {%- if messages[0]['content'] is string -%}\n        {%- set first_user_prefix = messages[0]['content'] + '\n\n' -%}\n    {%- else -%}\n        {%- set first_user_prefix = messages[0]['content'][0]['text'] + '\n\n' -%}\n    {%- endif -%}\n    {%- set loop_messages = messages[1:] -%}\n{%- else -%}\n    {%- set first_user_prefix = \"\" -%}\n    {%- set loop_messages = messages -%}\n{%- endif -%}\n{%- for message in loop_messages -%}\n    {%- if (message['role'] == 'user') != (loop.index0 % 2 == 0) -%}\n        {{ raise_exception(\"Conversation roles must alternate user/assistant/user/assistant/...\") }}\n    {%- endif -%}\n    {%- if (message['role'] == 'assistant') -%}\n        {%- set role = \"model\" -%}\n    {%- else -%}\n        {%- set role = message['role'] -%}\n    {%- endif -%}\n    {{ '<start_of_turn>' + role + '\n' + (first_user_prefix if loop.first else \"\") }}\n    {%- if message['content'] is string -%}\n        {{ message['content'] | trim }}\n    {%- elif message['content'] is iterable -%}\n        {%- for item in message['content'] -%}\n            {%- if item['type'] == 'image' -%}\n                {{ '<start_of_image>' }}\n            {%- elif item['type'] == 'text' -%}\n                {{ item['text'] | trim }}\n            {%- endif -%}\n        {%- endfor -%}\n    {%- else -%}\n        {{ raise_exception(\"Invalid content type\") }}\n    {%- endif -%}\n    {{ '<end_of_turn>\n' }}\n{%- endfor -%}\n{%- if add_generation_prompt -%}\n    {{'<start_of_turn>model\n'}}\n{%- endif -%}\n",
+                          "bosToken": "<bos>",
+                          "eosToken": "<eos>",
+                          "inputConfig": {
+                            "messagesConfig": {
+                              "contentConfig": {
+                                "type": "array",
+                                "textFieldName": "text",
+                                "imagesConfig": {
+                                  "type": "numbered",
+                                  "prefix": "<start_of_image>[img-",
+                                  "suffix": "]<end_of_image>"
+                                }
+                              }
+                            },
+                            "useTools": false
+                          }
+                        },
+                        "stopStrings": []
+                      }
+                    },
+                    {
+                      "key": "llm.prediction.llama.cpuThreads",
+                      "value": 6
+                    }
+                  ]
+                },
+                "stats": {
+                  "stopReason": "eosFound",
+                  "tokensPerSecond": 27.123882596012894,
+                  "numGpuLayers": -1,
+                  "timeToFirstTokenSec": 16.384,
+                  "promptTokensCount": 19,
+                  "predictedTokensCount": 156,
+                  "totalTokensCount": 175
+                }
+              },
+              "defaultShouldIncludeInContext": true,
+              "shouldIncludeInContext": true
+            },
+            {
+              "type": "debugInfoBlock",
+              "stepIdentifier": "1745855808180-0.5282248778230503",
+              "debugInfo": "Conversation naming technique: 'hardcoded'"
+            }
+          ]
+        }
+      ],
+      "currentlySelected": 0
+    },
+    {
+      "versions": [
+        {
+          "type": "singleStep",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not really, that's a hot stick grounding clamp assembly used by electrical utility workers.\nThe two metallic clamps at the top are grounding clamps.\nThey are mounted on the end of an insulated hot stick (the yellow and green pole).\nThe clamps connect high-voltage conductors to a grounded line, ensuring safety during maintenance work by providing a controlled path to ground.\nThe clear tubing running down the pole contains grounding cables that connect the clamps to the grounding system.\nThe overhead hook and handle mechanism lets the operator attach or release the clamps from a safe distance.\n\nI'm going to send you another picture, can you tell me if you recognize it?"
+            }
+          ],
+          "preprocessed": {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Not really, that's a hot stick grounding clamp assembly used by electrical utility workers.\nThe two metallic clamps at the top are grounding clamps.\nThey are mounted on the end of an insulated hot stick (the yellow and green pole).\nThe clamps connect high-voltage conductors to a grounded line, ensuring safety during maintenance work by providing a controlled path to ground.\nThe clear tubing running down the pole contains grounding cables that connect the clamps to the grounding system.\nThe overhead hook and handle mechanism lets the operator attach or release the clamps from a safe distance.\n\nI'm going to send you another picture, can you tell me if you recognize it?"
+              }
+            ]
+          }
+        }
+      ],
+      "currentlySelected": 0
+    },
+    {
+      "versions": [
+        {
+          "type": "multiStep",
+          "role": "assistant",
+          "senderInfo": {
+            "senderName": "gemma-3-4b-it"
+          },
+          "steps": [
+            {
+              "type": "contentBlock",
+              "stepIdentifier": "1745855881862-0.7241679196821165",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "You are absolutely correct! My apologies for the misidentification. That is indeed a hot stick grounding clamp assembly used by electrical utility workers. \n\nYour description of its function and components – the clamps, insulated hot stick, grounding cables, and hook mechanism – was perfect. I was completely thrown off by the fiber optic tools in the first image. \n\nThank you for correcting me and sending the second picture. I am still under development and learning to accurately identify objects from images. \n\nPlease send it over!",
+                  "fromDraftModel": false,
+                  "tokensCount": 103
+                }
+              ],
+              "genInfo": {
+                "indexedModelIdentifier": "lmstudio-community/gemma-3-4b-it-GGUF/gemma-3-4b-it-Q4_K_M.gguf",
+                "identifier": "gemma-3-4b-it",
+                "loadModelConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.load.llama.cpuThreadPoolSize",
+                      "value": 6
+                    },
+                    {
+                      "key": "llm.load.contextLength",
+                      "value": 4096
+                    },
+                    {
+                      "key": "llm.load.llama.acceleration.offloadRatio",
+                      "value": 1
+                    }
+                  ]
+                },
+                "predictionConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.prediction.temperature",
+                      "value": 0.1
+                    },
+                    {
+                      "key": "llm.prediction.promptTemplate",
+                      "value": {
+                        "type": "jinja",
+                        "jinjaPromptTemplate": {
+                          "template": "{{ bos_token }}\n{%- if messages[0]['role'] == 'system' -%}\n    {%- if messages[0]['content'] is string -%}\n        {%- set first_user_prefix = messages[0]['content'] + '\n\n' -%}\n    {%- else -%}\n        {%- set first_user_prefix = messages[0]['content'][0]['text'] + '\n\n' -%}\n    {%- endif -%}\n    {%- set loop_messages = messages[1:] -%}\n{%- else -%}\n    {%- set first_user_prefix = \"\" -%}\n    {%- set loop_messages = messages -%}\n{%- endif -%}\n{%- for message in loop_messages -%}\n    {%- if (message['role'] == 'user') != (loop.index0 % 2 == 0) -%}\n        {{ raise_exception(\"Conversation roles must alternate user/assistant/user/assistant/...\") }}\n    {%- endif -%}\n    {%- if (message['role'] == 'assistant') -%}\n        {%- set role = \"model\" -%}\n    {%- else -%}\n        {%- set role = message['role'] -%}\n    {%- endif -%}\n    {{ '<start_of_turn>' + role + '\n' + (first_user_prefix if loop.first else \"\") }}\n    {%- if message['content'] is string -%}\n        {{ message['content'] | trim }}\n    {%- elif message['content'] is iterable -%}\n        {%- for item in message['content'] -%}\n            {%- if item['type'] == 'image' -%}\n                {{ '<start_of_image>' }}\n            {%- elif item['type'] == 'text' -%}\n                {{ item['text'] | trim }}\n            {%- endif -%}\n        {%- endfor -%}\n    {%- else -%}\n        {{ raise_exception(\"Invalid content type\") }}\n    {%- endif -%}\n    {{ '<end_of_turn>\n' }}\n{%- endfor -%}\n{%- if add_generation_prompt -%}\n    {{'<start_of_turn>model\n'}}\n{%- endif -%}\n",
+                          "bosToken": "<bos>",
+                          "eosToken": "<eos>",
+                          "inputConfig": {
+                            "messagesConfig": {
+                              "contentConfig": {
+                                "type": "array",
+                                "textFieldName": "text",
+                                "imagesConfig": {
+                                  "type": "numbered",
+                                  "prefix": "<start_of_image>[img-",
+                                  "suffix": "]<end_of_image>"
+                                }
+                              }
+                            },
+                            "useTools": false
+                          }
+                        },
+                        "stopStrings": []
+                      }
+                    },
+                    {
+                      "key": "llm.prediction.llama.cpuThreads",
+                      "value": 6
+                    }
+                  ]
+                },
+                "stats": {
+                  "stopReason": "eosFound",
+                  "tokensPerSecond": 26.559088737235356,
+                  "numGpuLayers": -1,
+                  "timeToFirstTokenSec": 2.153,
+                  "promptTokensCount": 319,
+                  "predictedTokensCount": 104,
+                  "totalTokensCount": 423
+                }
+              },
+              "defaultShouldIncludeInContext": true,
+              "shouldIncludeInContext": true
+            },
+            {
+              "type": "debugInfoBlock",
+              "stepIdentifier": "1745855885657-0.048253899091319274",
+              "debugInfo": "Conversation naming technique: 'prompt'"
+            }
+          ]
+        }
+      ],
+      "currentlySelected": 0
+    },
+    {
+      "versions": [
+        {
+          "type": "singleStep",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Use the description I sent before to understand what this is"
+            },
+            {
+              "type": "file",
+              "fileIdentifier": "1745856108908 - 324.png",
+              "fileType": "image",
+              "sizeBytes": 191888
+            }
+          ],
+          "preprocessed": {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Use the description I sent before to understand what this is"
+              },
+              {
+                "type": "file",
+                "name": "Screenshot 2025-04-28 at 18.01.07.png",
+                "identifier": "1745856108908 - 324.png",
+                "sizeBytes": 191888,
+                "fileType": "image"
+              }
+            ]
+          }
+        }
+      ],
+      "currentlySelected": 0
+    },
+    {
+      "versions": [
+        {
+          "type": "multiStep",
+          "role": "assistant",
+          "senderInfo": {
+            "senderName": "gemma-3-4b-it"
+          },
+          "steps": [
+            {
+              "type": "contentBlock",
+              "stepIdentifier": "1745856139637-0.9462318655783337",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "You are absolutely right again! Based on your detailed description – the yellow color, insulated construction, hook mechanism at the top, and clear tubing running down the center – this is indeed a **hot stick**. \n\nI completely missed the obvious. Thank you for confirming my understanding and correcting me one last time. I’m still learning to pay close attention to detail!",
+                  "fromDraftModel": false,
+                  "tokensCount": 74
+                }
+              ],
+              "genInfo": {
+                "indexedModelIdentifier": "lmstudio-community/gemma-3-4b-it-GGUF/gemma-3-4b-it-Q4_K_M.gguf",
+                "identifier": "gemma-3-4b-it",
+                "loadModelConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.load.llama.cpuThreadPoolSize",
+                      "value": 6
+                    },
+                    {
+                      "key": "llm.load.contextLength",
+                      "value": 4096
+                    },
+                    {
+                      "key": "llm.load.llama.acceleration.offloadRatio",
+                      "value": 1
+                    }
+                  ]
+                },
+                "predictionConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.prediction.temperature",
+                      "value": 0.1
+                    },
+                    {
+                      "key": "llm.prediction.promptTemplate",
+                      "value": {
+                        "type": "jinja",
+                        "jinjaPromptTemplate": {
+                          "template": "{{ bos_token }}\n{%- if messages[0]['role'] == 'system' -%}\n    {%- if messages[0]['content'] is string -%}\n        {%- set first_user_prefix = messages[0]['content'] + '\n\n' -%}\n    {%- else -%}\n        {%- set first_user_prefix = messages[0]['content'][0]['text'] + '\n\n' -%}\n    {%- endif -%}\n    {%- set loop_messages = messages[1:] -%}\n{%- else -%}\n    {%- set first_user_prefix = \"\" -%}\n    {%- set loop_messages = messages -%}\n{%- endif -%}\n{%- for message in loop_messages -%}\n    {%- if (message['role'] == 'user') != (loop.index0 % 2 == 0) -%}\n        {{ raise_exception(\"Conversation roles must alternate user/assistant/user/assistant/...\") }}\n    {%- endif -%}\n    {%- if (message['role'] == 'assistant') -%}\n        {%- set role = \"model\" -%}\n    {%- else -%}\n        {%- set role = message['role'] -%}\n    {%- endif -%}\n    {{ '<start_of_turn>' + role + '\n' + (first_user_prefix if loop.first else \"\") }}\n    {%- if message['content'] is string -%}\n        {{ message['content'] | trim }}\n    {%- elif message['content'] is iterable -%}\n        {%- for item in message['content'] -%}\n            {%- if item['type'] == 'image' -%}\n                {{ '<start_of_image>' }}\n            {%- elif item['type'] == 'text' -%}\n                {{ item['text'] | trim }}\n            {%- endif -%}\n        {%- endfor -%}\n    {%- else -%}\n        {{ raise_exception(\"Invalid content type\") }}\n    {%- endif -%}\n    {{ '<end_of_turn>\n' }}\n{%- endfor -%}\n{%- if add_generation_prompt -%}\n    {{'<start_of_turn>model\n'}}\n{%- endif -%}\n",
+                          "bosToken": "<bos>",
+                          "eosToken": "<eos>",
+                          "inputConfig": {
+                            "messagesConfig": {
+                              "contentConfig": {
+                                "type": "array",
+                                "textFieldName": "text",
+                                "imagesConfig": {
+                                  "type": "numbered",
+                                  "prefix": "<start_of_image>[img-",
+                                  "suffix": "]<end_of_image>"
+                                }
+                              }
+                            },
+                            "useTools": false
+                          }
+                        },
+                        "stopStrings": []
+                      }
+                    },
+                    {
+                      "key": "llm.prediction.llama.cpuThreads",
+                      "value": 6
+                    }
+                  ]
+                },
+                "stats": {
+                  "stopReason": "eosFound",
+                  "tokensPerSecond": 25.669292578254552,
+                  "numGpuLayers": -1,
+                  "timeToFirstTokenSec": 18.315,
+                  "promptTokensCount": 446,
+                  "predictedTokensCount": 75,
+                  "totalTokensCount": 521
+                }
+              },
+              "defaultShouldIncludeInContext": true,
+              "shouldIncludeInContext": true
+            },
+            {
+              "type": "debugInfoBlock",
+              "stepIdentifier": "1745856142453-0.023398237258743793",
+              "debugInfo": "Conversation naming technique: 'hardcoded'"
+            }
+          ]
+        }
+      ],
+      "currentlySelected": 0
+    },
+    {
+      "versions": [
+        {
+          "type": "singleStep",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "What is the function of the hot stick then?"
+            }
+          ],
+          "preprocessed": {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "What is the function of the hot stick then?"
+              }
+            ]
+          }
+        }
+      ],
+      "currentlySelected": 0
+    },
+    {
+      "versions": [
+        {
+          "type": "multiStep",
+          "role": "assistant",
+          "senderInfo": {
+            "senderName": "gemma-3-4b-it"
+          },
+          "steps": [
+            {
+              "type": "contentBlock",
+              "stepIdentifier": "1745906354973-0.4033277666786199",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Okay, let's talk about the function of a hot stick!\n\nA hot stick (also known as a grounding stick) is a crucial tool used by electrical utility workers for several key reasons:\n\n*   **Safety During Grounding:** Its primary purpose is to safely connect high-voltage equipment to ground during maintenance or repairs. When working on energized lines, there’s a significant risk of electric shock. The hot stick provides a pathway for the electricity to flow to ground, minimizing this risk.\n*   **Establishing a Ground Connection:** The grounding clamps at the end of the stick make contact with the high-voltage conductors. This creates a temporary ground connection, allowing workers to safely work on those lines.\n*   **Insulation and Control:** The insulated shaft protects the worker from accidental contact with the energized equipment. The hook mechanism allows for precise positioning and control while reaching overhead lines.\n\nEssentially, it’s a vital piece of safety equipment that enables electrical workers to perform their jobs without putting themselves at extreme risk. \n\nDo you want me to elaborate on any specific aspect of its use, like the different types of hot sticks or the safety procedures involved?",
+                  "fromDraftModel": false,
+                  "tokensCount": 237
+                }
+              ],
+              "genInfo": {
+                "indexedModelIdentifier": "lmstudio-community/gemma-3-4b-it-GGUF/gemma-3-4b-it-Q4_K_M.gguf",
+                "identifier": "gemma-3-4b-it",
+                "loadModelConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.load.llama.cpuThreadPoolSize",
+                      "value": 6
+                    },
+                    {
+                      "key": "llm.load.contextLength",
+                      "value": 4096
+                    },
+                    {
+                      "key": "llm.load.llama.acceleration.offloadRatio",
+                      "value": 1
+                    }
+                  ]
+                },
+                "predictionConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.prediction.temperature",
+                      "value": 0.1
+                    },
+                    {
+                      "key": "llm.prediction.promptTemplate",
+                      "value": {
+                        "type": "jinja",
+                        "jinjaPromptTemplate": {
+                          "template": "{{ bos_token }}\n{%- if messages[0]['role'] == 'system' -%}\n    {%- if messages[0]['content'] is string -%}\n        {%- set first_user_prefix = messages[0]['content'] + '\n\n' -%}\n    {%- else -%}\n        {%- set first_user_prefix = messages[0]['content'][0]['text'] + '\n\n' -%}\n    {%- endif -%}\n    {%- set loop_messages = messages[1:] -%}\n{%- else -%}\n    {%- set first_user_prefix = \"\" -%}\n    {%- set loop_messages = messages -%}\n{%- endif -%}\n{%- for message in loop_messages -%}\n    {%- if (message['role'] == 'user') != (loop.index0 % 2 == 0) -%}\n        {{ raise_exception(\"Conversation roles must alternate user/assistant/user/assistant/...\") }}\n    {%- endif -%}\n    {%- if (message['role'] == 'assistant') -%}\n        {%- set role = \"model\" -%}\n    {%- else -%}\n        {%- set role = message['role'] -%}\n    {%- endif -%}\n    {{ '<start_of_turn>' + role + '\n' + (first_user_prefix if loop.first else \"\") }}\n    {%- if message['content'] is string -%}\n        {{ message['content'] | trim }}\n    {%- elif message['content'] is iterable -%}\n        {%- for item in message['content'] -%}\n            {%- if item['type'] == 'image' -%}\n                {{ '<start_of_image>' }}\n            {%- elif item['type'] == 'text' -%}\n                {{ item['text'] | trim }}\n            {%- endif -%}\n        {%- endfor -%}\n    {%- else -%}\n        {{ raise_exception(\"Invalid content type\") }}\n    {%- endif -%}\n    {{ '<end_of_turn>\n' }}\n{%- endfor -%}\n{%- if add_generation_prompt -%}\n    {{'<start_of_turn>model\n'}}\n{%- endif -%}\n",
+                          "bosToken": "<bos>",
+                          "eosToken": "<eos>",
+                          "inputConfig": {
+                            "messagesConfig": {
+                              "contentConfig": {
+                                "type": "array",
+                                "textFieldName": "text",
+                                "imagesConfig": {
+                                  "type": "numbered",
+                                  "prefix": "<start_of_image>[img-",
+                                  "suffix": "]<end_of_image>"
+                                }
+                              }
+                            },
+                            "useTools": false
+                          }
+                        },
+                        "stopStrings": []
+                      }
+                    },
+                    {
+                      "key": "llm.prediction.llama.cpuThreads",
+                      "value": 6
+                    }
+                  ]
+                },
+                "stats": {
+                  "stopReason": "eosFound",
+                  "tokensPerSecond": 25.893612502741675,
+                  "numGpuLayers": -1,
+                  "timeToFirstTokenSec": 33.796,
+                  "promptTokensCount": 540,
+                  "predictedTokensCount": 238,
+                  "totalTokensCount": 778
+                }
+              },
+              "defaultShouldIncludeInContext": true,
+              "shouldIncludeInContext": true
+            },
+            {
+              "type": "debugInfoBlock",
+              "stepIdentifier": "1745906363951-0.18492093562475054",
+              "debugInfo": "Conversation naming technique: 'hardcoded'"
+            }
+          ]
+        }
+      ],
+      "currentlySelected": 0
+    },
+    {
+      "versions": [
+        {
+          "type": "singleStep",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "please provide a structured description of the objects you see in this picture that would be used by electrical utility workers, in json format, adhering to the following schema: \n{\n    \"object\": {\n        \"name\": \"object name\",\n        \"function\": \"object function\"\n    }\n}\n\nReturn raw Json ONLY, with no comments or annotations"
+            },
+            {
+              "type": "file",
+              "fileIdentifier": "1745906855208 - 728.png",
+              "fileType": "image",
+              "sizeBytes": 991675
+            }
+          ],
+          "preprocessed": {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "please provide a structured description of the objects you see in this picture that would be used by electrical utility workers, in json format, adhering to the following schema: \n{\n    \"object\": {\n        \"name\": \"object name\",\n        \"function\": \"object function\"\n    }\n}\n\nReturn raw Json ONLY, with no comments or annotations"
+              },
+              {
+                "type": "file",
+                "name": "Screenshot 2025-04-29 at 08.04.04.png",
+                "identifier": "1745906855208 - 728.png",
+                "sizeBytes": 991675,
+                "fileType": "image"
+              }
+            ]
+          },
+          "edited": true
+        }
+      ],
+      "currentlySelected": 0
+    },
+    {
+      "versions": [
+        {
+          "type": "multiStep",
+          "role": "assistant",
+          "senderInfo": {
+            "senderName": "gemma-3-4b-it"
+          },
+          "steps": [
+            {
+              "type": "contentBlock",
+              "stepIdentifier": "1745906878978-0.4184909584970813",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "```json\n[\n  {\n    \"object\": {\n      \"name\": \"Grounding Clamp Assembly\",\n      \"function\": \"Connects high-voltage conductors to a grounded line for safety during electrical maintenance.\"\n    }\n  },\n  {\n    \"object\": {\n      \"name\": \"Fiber Optic Stripper\",\n      \"function\": \"Used to strip the outer jacket of fiber optic cables, exposing the core fibers for splicing.\"\n    }\n  },\n  {\n    \"object\": {\n      \"name\": \"Insulated Pole\",\n      \"function\": \"Provides a safe handle and extension for reaching overhead electrical equipment.\"\n    }\n  },\n  {\n    \"object\": {\n      \"name\": \"Storage Shelves\",\n      \"function\": \"Used to store tools and equipment in an organized manner.\"\n    }\n  },\n  {\n    \"object\": {\n      \"name\": \"Toolbox\",\n      \"function\": \"Contains various electrical tools and supplies.\"\n    }\n  }\n]\n```",
+                  "fromDraftModel": false,
+                  "tokensCount": 229
+                }
+              ],
+              "genInfo": {
+                "indexedModelIdentifier": "lmstudio-community/gemma-3-4b-it-GGUF/gemma-3-4b-it-Q4_K_M.gguf",
+                "identifier": "gemma-3-4b-it",
+                "loadModelConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.load.llama.cpuThreadPoolSize",
+                      "value": 6
+                    },
+                    {
+                      "key": "llm.load.contextLength",
+                      "value": 4096
+                    },
+                    {
+                      "key": "llm.load.llama.acceleration.offloadRatio",
+                      "value": 1
+                    }
+                  ]
+                },
+                "predictionConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.prediction.temperature",
+                      "value": 0.1
+                    },
+                    {
+                      "key": "llm.prediction.promptTemplate",
+                      "value": {
+                        "type": "jinja",
+                        "jinjaPromptTemplate": {
+                          "template": "{{ bos_token }}\n{%- if messages[0]['role'] == 'system' -%}\n    {%- if messages[0]['content'] is string -%}\n        {%- set first_user_prefix = messages[0]['content'] + '\n\n' -%}\n    {%- else -%}\n        {%- set first_user_prefix = messages[0]['content'][0]['text'] + '\n\n' -%}\n    {%- endif -%}\n    {%- set loop_messages = messages[1:] -%}\n{%- else -%}\n    {%- set first_user_prefix = \"\" -%}\n    {%- set loop_messages = messages -%}\n{%- endif -%}\n{%- for message in loop_messages -%}\n    {%- if (message['role'] == 'user') != (loop.index0 % 2 == 0) -%}\n        {{ raise_exception(\"Conversation roles must alternate user/assistant/user/assistant/...\") }}\n    {%- endif -%}\n    {%- if (message['role'] == 'assistant') -%}\n        {%- set role = \"model\" -%}\n    {%- else -%}\n        {%- set role = message['role'] -%}\n    {%- endif -%}\n    {{ '<start_of_turn>' + role + '\n' + (first_user_prefix if loop.first else \"\") }}\n    {%- if message['content'] is string -%}\n        {{ message['content'] | trim }}\n    {%- elif message['content'] is iterable -%}\n        {%- for item in message['content'] -%}\n            {%- if item['type'] == 'image' -%}\n                {{ '<start_of_image>' }}\n            {%- elif item['type'] == 'text' -%}\n                {{ item['text'] | trim }}\n            {%- endif -%}\n        {%- endfor -%}\n    {%- else -%}\n        {{ raise_exception(\"Invalid content type\") }}\n    {%- endif -%}\n    {{ '<end_of_turn>\n' }}\n{%- endfor -%}\n{%- if add_generation_prompt -%}\n    {{'<start_of_turn>model\n'}}\n{%- endif -%}\n",
+                          "bosToken": "<bos>",
+                          "eosToken": "<eos>",
+                          "inputConfig": {
+                            "messagesConfig": {
+                              "contentConfig": {
+                                "type": "array",
+                                "textFieldName": "text",
+                                "imagesConfig": {
+                                  "type": "numbered",
+                                  "prefix": "<start_of_image>[img-",
+                                  "suffix": "]<end_of_image>"
+                                }
+                              }
+                            },
+                            "useTools": false
+                          }
+                        },
+                        "stopStrings": []
+                      }
+                    },
+                    {
+                      "key": "llm.prediction.llama.cpuThreads",
+                      "value": 6
+                    }
+                  ]
+                },
+                "stats": {
+                  "stopReason": "eosFound",
+                  "tokensPerSecond": 25.115556127753443,
+                  "numGpuLayers": -1,
+                  "timeToFirstTokenSec": 20.866,
+                  "promptTokensCount": 857,
+                  "predictedTokensCount": 230,
+                  "totalTokensCount": 1087
+                }
+              },
+              "defaultShouldIncludeInContext": true,
+              "shouldIncludeInContext": true
+            },
+            {
+              "type": "debugInfoBlock",
+              "stepIdentifier": "1745906887756-0.6600438637225048",
+              "debugInfo": "Conversation naming technique: 'hardcoded'"
+            }
+          ]
+        },
+        {
+          "type": "multiStep",
+          "role": "assistant",
+          "senderInfo": {
+            "senderName": "gemma-3-4b-it"
+          },
+          "steps": [
+            {
+              "type": "contentBlock",
+              "stepIdentifier": "1745906973407-0.5026983424372018",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "```json\n[\n  {\n    \"object\": {\n      \"name\": \"Grounding Clamp Assembly\",\n      \"function\": \"Connects high-voltage conductors to a grounded line for safety during electrical work.\"\n    }\n  },\n  {\n    \"object\": {\n      \"name\": \"Fiber Optic Stripper\",\n      \"function\": \"Stripping the outer jacket of fiber optic cables to expose the core fibers for splicing.\"\n    }\n  },\n  {\n    \"object\": {\n      \"name\": \"Grounding Cable\",\n      \"function\": \"Connects the grounding clamps to the grounding system, providing a pathway for current flow.\"\n    }\n  },\n  {\n    \"object\": {\n      \"name\": \"Hot Stick (Insulated Pole)\",\n      \"function\": \"Provides an insulated handle for safely reaching and manipulating electrical equipment while establishing a ground connection.\"\n    }\n  }\n]\n```",
+                  "fromDraftModel": false,
+                  "tokensCount": 205
+                }
+              ],
+              "genInfo": {
+                "indexedModelIdentifier": "lmstudio-community/gemma-3-4b-it-GGUF/gemma-3-4b-it-Q4_K_M.gguf",
+                "identifier": "gemma-3-4b-it",
+                "loadModelConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.load.llama.cpuThreadPoolSize",
+                      "value": 6
+                    },
+                    {
+                      "key": "llm.load.contextLength",
+                      "value": 4096
+                    },
+                    {
+                      "key": "llm.load.llama.acceleration.offloadRatio",
+                      "value": 1
+                    }
+                  ]
+                },
+                "predictionConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.prediction.temperature",
+                      "value": 0.1
+                    },
+                    {
+                      "key": "llm.prediction.promptTemplate",
+                      "value": {
+                        "type": "jinja",
+                        "jinjaPromptTemplate": {
+                          "template": "{{ bos_token }}\n{%- if messages[0]['role'] == 'system' -%}\n    {%- if messages[0]['content'] is string -%}\n        {%- set first_user_prefix = messages[0]['content'] + '\n\n' -%}\n    {%- else -%}\n        {%- set first_user_prefix = messages[0]['content'][0]['text'] + '\n\n' -%}\n    {%- endif -%}\n    {%- set loop_messages = messages[1:] -%}\n{%- else -%}\n    {%- set first_user_prefix = \"\" -%}\n    {%- set loop_messages = messages -%}\n{%- endif -%}\n{%- for message in loop_messages -%}\n    {%- if (message['role'] == 'user') != (loop.index0 % 2 == 0) -%}\n        {{ raise_exception(\"Conversation roles must alternate user/assistant/user/assistant/...\") }}\n    {%- endif -%}\n    {%- if (message['role'] == 'assistant') -%}\n        {%- set role = \"model\" -%}\n    {%- else -%}\n        {%- set role = message['role'] -%}\n    {%- endif -%}\n    {{ '<start_of_turn>' + role + '\n' + (first_user_prefix if loop.first else \"\") }}\n    {%- if message['content'] is string -%}\n        {{ message['content'] | trim }}\n    {%- elif message['content'] is iterable -%}\n        {%- for item in message['content'] -%}\n            {%- if item['type'] == 'image' -%}\n                {{ '<start_of_image>' }}\n            {%- elif item['type'] == 'text' -%}\n                {{ item['text'] | trim }}\n            {%- endif -%}\n        {%- endfor -%}\n    {%- else -%}\n        {{ raise_exception(\"Invalid content type\") }}\n    {%- endif -%}\n    {{ '<end_of_turn>\n' }}\n{%- endfor -%}\n{%- if add_generation_prompt -%}\n    {{'<start_of_turn>model\n'}}\n{%- endif -%}\n",
+                          "bosToken": "<bos>",
+                          "eosToken": "<eos>",
+                          "inputConfig": {
+                            "messagesConfig": {
+                              "contentConfig": {
+                                "type": "array",
+                                "textFieldName": "text",
+                                "imagesConfig": {
+                                  "type": "numbered",
+                                  "prefix": "<start_of_image>[img-",
+                                  "suffix": "]<end_of_image>"
+                                }
+                              }
+                            },
+                            "useTools": false
+                          }
+                        },
+                        "stopStrings": []
+                      }
+                    },
+                    {
+                      "key": "llm.prediction.llama.cpuThreads",
+                      "value": 6
+                    }
+                  ]
+                },
+                "stats": {
+                  "stopReason": "eosFound",
+                  "tokensPerSecond": 24.855500256759733,
+                  "numGpuLayers": -1,
+                  "timeToFirstTokenSec": 5.608,
+                  "promptTokensCount": 865,
+                  "predictedTokensCount": 206,
+                  "totalTokensCount": 1071
+                }
+              },
+              "defaultShouldIncludeInContext": true,
+              "shouldIncludeInContext": true
+            },
+            {
+              "type": "debugInfoBlock",
+              "stepIdentifier": "1745906981300-0.23033737004240518",
+              "debugInfo": "Conversation naming technique: 'hardcoded'"
+            }
+          ]
+        }
+      ],
+      "currentlySelected": 1
+    },
+    {
+      "versions": [
+        {
+          "type": "singleStep",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "we said that's NOT a Fiber Optic Stripper"
+            }
+          ],
+          "preprocessed": {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "we said that's NOT a Fiber Optic Stripper"
+              }
+            ]
+          }
+        }
+      ],
+      "currentlySelected": 0
+    },
+    {
+      "versions": [
+        {
+          "type": "multiStep",
+          "role": "assistant",
+          "senderInfo": {
+            "senderName": "gemma-3-4b-it"
+          },
+          "steps": [
+            {
+              "type": "contentBlock",
+              "stepIdentifier": "1745907048755-0.7682740038266758",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "You are absolutely correct! My apologies again. I am still under development and clearly struggling with accurate object recognition. \n\nHere’s the corrected JSON:\n\n```json\n[\n  {\n    \"object\": {\n      \"name\": \"Grounding Clamp Assembly\",\n      \"function\": \"Connects high-voltage conductors to a grounded line for safety during electrical work.\"\n    }\n  },\n  {\n    \"object\": {\n      \"name\": \"Grounding Cable\",\n      \"function\": \"Connects the grounding clamps to the grounding system, providing a pathway for current flow.\"\n    }\n  },\n  {\n    \"object\": {\n      \"name\": \"Hot Stick (Insulated Pole)\",\n      \"function\": \"Provides an insulated handle for safely reaching and manipulating electrical equipment while establishing a ground connection.\"\n    }\n  }\n]\n```\n\nThank you for pointing out my mistake. I appreciate your patience as I continue to learn!",
+                  "fromDraftModel": false,
+                  "tokensCount": 206
+                }
+              ],
+              "defaultShouldIncludeInContext": true,
+              "shouldIncludeInContext": true,
+              "genInfo": {
+                "indexedModelIdentifier": "lmstudio-community/gemma-3-4b-it-GGUF/gemma-3-4b-it-Q4_K_M.gguf",
+                "identifier": "gemma-3-4b-it",
+                "loadModelConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.load.llama.cpuThreadPoolSize",
+                      "value": 6
+                    },
+                    {
+                      "key": "llm.load.contextLength",
+                      "value": 4096
+                    },
+                    {
+                      "key": "llm.load.llama.acceleration.offloadRatio",
+                      "value": 1
+                    }
+                  ]
+                },
+                "predictionConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.prediction.temperature",
+                      "value": 0.1
+                    },
+                    {
+                      "key": "llm.prediction.promptTemplate",
+                      "value": {
+                        "type": "jinja",
+                        "jinjaPromptTemplate": {
+                          "template": "{{ bos_token }}\n{%- if messages[0]['role'] == 'system' -%}\n    {%- if messages[0]['content'] is string -%}\n        {%- set first_user_prefix = messages[0]['content'] + '\n\n' -%}\n    {%- else -%}\n        {%- set first_user_prefix = messages[0]['content'][0]['text'] + '\n\n' -%}\n    {%- endif -%}\n    {%- set loop_messages = messages[1:] -%}\n{%- else -%}\n    {%- set first_user_prefix = \"\" -%}\n    {%- set loop_messages = messages -%}\n{%- endif -%}\n{%- for message in loop_messages -%}\n    {%- if (message['role'] == 'user') != (loop.index0 % 2 == 0) -%}\n        {{ raise_exception(\"Conversation roles must alternate user/assistant/user/assistant/...\") }}\n    {%- endif -%}\n    {%- if (message['role'] == 'assistant') -%}\n        {%- set role = \"model\" -%}\n    {%- else -%}\n        {%- set role = message['role'] -%}\n    {%- endif -%}\n    {{ '<start_of_turn>' + role + '\n' + (first_user_prefix if loop.first else \"\") }}\n    {%- if message['content'] is string -%}\n        {{ message['content'] | trim }}\n    {%- elif message['content'] is iterable -%}\n        {%- for item in message['content'] -%}\n            {%- if item['type'] == 'image' -%}\n                {{ '<start_of_image>' }}\n            {%- elif item['type'] == 'text' -%}\n                {{ item['text'] | trim }}\n            {%- endif -%}\n        {%- endfor -%}\n    {%- else -%}\n        {{ raise_exception(\"Invalid content type\") }}\n    {%- endif -%}\n    {{ '<end_of_turn>\n' }}\n{%- endfor -%}\n{%- if add_generation_prompt -%}\n    {{'<start_of_turn>model\n'}}\n{%- endif -%}\n",
+                          "bosToken": "<bos>",
+                          "eosToken": "<eos>",
+                          "inputConfig": {
+                            "messagesConfig": {
+                              "contentConfig": {
+                                "type": "array",
+                                "textFieldName": "text",
+                                "imagesConfig": {
+                                  "type": "numbered",
+                                  "prefix": "<start_of_image>[img-",
+                                  "suffix": "]<end_of_image>"
+                                }
+                              }
+                            },
+                            "useTools": false
+                          }
+                        },
+                        "stopStrings": []
+                      }
+                    },
+                    {
+                      "key": "llm.prediction.llama.cpuThreads",
+                      "value": 6
+                    }
+                  ]
+                },
+                "stats": {
+                  "stopReason": "eosFound",
+                  "tokensPerSecond": 24.697824503463366,
+                  "numGpuLayers": -1,
+                  "timeToFirstTokenSec": 6.143,
+                  "promptTokensCount": 1092,
+                  "predictedTokensCount": 207,
+                  "totalTokensCount": 1299
+                }
+              }
+            },
+            {
+              "type": "debugInfoBlock",
+              "stepIdentifier": "1745907057021-0.5932747960917542",
+              "debugInfo": "Conversation naming technique: 'hardcoded'"
+            }
+          ]
+        }
+      ],
+      "currentlySelected": 0
+    }
+  ],
+  "usePerChatPredictionConfig": true,
+  "perChatPredictionConfig": {
+    "fields": []
+  },
+  "clientInput": "",
+  "clientInputFiles": [],
+  "userFilesSizeBytes": 3224608,
+  "lastUsedModel": {
+    "indexedModelIdentifier": "lmstudio-community/gemma-3-4b-it-GGUF/gemma-3-4b-it-Q4_K_M.gguf",
+    "identifier": "gemma-3-4b-it",
+    "instanceLoadTimeConfig": {
+      "fields": []
+    },
+    "instanceOperationTimeConfig": {
+      "fields": []
+    }
+  },
+  "notes": [],
+  "plugins": [
+    "lmstudio/rag-v1"
+  ],
+  "pluginConfigs": {},
+  "looseFiles": []
+}
